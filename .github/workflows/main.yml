@@ -66,6 +66,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           stack_file_name: docker-compose.yaml
           script: |
+            cd ~/infra
             sudo docker-compose stop
             sudo docker-compose rm -f
             sudo docker pull feel2code/backend:latest
