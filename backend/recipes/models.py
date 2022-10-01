@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+
 from users.models import User
 
 
@@ -193,8 +194,7 @@ class Cart(models.Model):
 
 class Favorites(models.Model):
     """
-    Список избранного.
-    вязан с моделью Recipe через М2М.
+    Список избранного связан с моделью Recipe через М2М.
     Пользователь (user) связан с моделью User.
     """
     user = models.ForeignKey(

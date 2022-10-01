@@ -128,7 +128,8 @@ scp -r infra <username>@<host>:/infra
 
 ## Использованные технологии:
 ```bash, python 3.7, django 2.2, django REST Framework, postgreSQL 13.0, docker,
-Docker Hub, Nginx, Gunicorn 20.0.4, GitHub Actions, Yandex.Cloud.```
+Docker Hub, Nginx, Gunicorn 20.0.4, GitHub Actions, Yandex.Cloud.
+```
 
 ## Автор проекта
 [feel2code](https://t.me/feel2code)

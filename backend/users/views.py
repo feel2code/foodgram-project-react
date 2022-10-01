@@ -1,17 +1,18 @@
 from django.shortcuts import get_object_or_404
 from djoser.views import UserViewSet
-from recipes.pagination import CustomPagination
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+
 from users import serializers
 from users.models import Follow, User
+from users.pagination import UserPagination
 
 
 class FollowViewSet(UserViewSet):
     """Работает с пользователями."""
-    pagination_class = CustomPagination
+    pagination_class = UserPagination
 
     def __get_add_delete_follow(self, request, id):
         """Создаёт или удаляет связь между пользователями."""
