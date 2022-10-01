@@ -1,9 +1,9 @@
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from drf_extra_fields.fields import Base64ImageField
 from recipes.models import Recipe
-from users.models import Follow, User
 from rest_framework.serializers import (ModelSerializer, ReadOnlyField,
                                         SerializerMethodField, ValidationError)
+from users.models import Follow, User
 
 
 class CustomUserCreateSerializer(UserCreateSerializer):

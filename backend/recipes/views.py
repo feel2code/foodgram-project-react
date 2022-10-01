@@ -7,11 +7,11 @@ from recipes.models import (AmountIngredient, Cart, Favorites, Ingredient,
                             Recipe, Tag)
 from recipes.pagination import CustomPagination
 from recipes.permissions import IsAdminOrReadOnly, IsAuthorOrReadOnly
-from users.models import User
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from users.models import User
 
 
 class TagsViewSet(viewsets.ReadOnlyModelViewSet):
