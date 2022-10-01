@@ -8,7 +8,8 @@ from rest_framework.response import Response
 
 from recipes import serializers
 from recipes.filters import IngredientSearchFilter, RecipeFilterSet
-from recipes.models import AmountIngredient, Cart, Favorites, Ingredient, Recipe, Tag
+from recipes.models import (AmountIngredient, Cart, Favorites, Ingredient,
+                            Recipe, Tag)
 from recipes.pagination import CustomPagination
 from recipes.permissions import IsAdminOrReadOnly, IsAuthorOrReadOnly
 from users.models import User
