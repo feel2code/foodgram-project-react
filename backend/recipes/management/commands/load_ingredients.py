@@ -34,4 +34,8 @@ class Command(BaseCommand):
                         measurement_unit=item.get('measurement_unit')
                     )
         except FileNotFoundError:
-            raise CommandError(f'Файл {filename} отсутствует в каталоге data')
+            raise CommandError(f'Файл {filename} отсутствует в каталоге data!')
+        except IsADirectoryError:
+            raise CommandError(f'{filename} является директорией!')
+        except PermissionError:
+            raise CommandError(f'Для открытия файла {filename} недостаточно прав!')
