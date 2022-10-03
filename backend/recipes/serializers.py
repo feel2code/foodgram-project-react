@@ -102,7 +102,7 @@ class RecipeSerializer(ModelSerializer):
         data['ingredients'] = ingredients
         return data
 
-    def __create_ingredients(self, ingredients, recipe):
+    def create_ingredients(self, ingredients, recipe):
         """Записывает количество ингредиентов в рецепте."""
         for ingredient in ingredients:
             AmountIngredient.objects.create(
@@ -117,7 +117,7 @@ class RecipeSerializer(ModelSerializer):
         ingredients = validated_data.pop('ingredients')
         recipe = Recipe.objects.create(image=image, **validated_data)
         recipe.tags.set(self.initial_data.get('tags'))
-        self.__create_ingredients(ingredients, recipe)
+        self.create_ingredients(ingredients, recipe)
         return recipe
 
     def update(self, instance, validated_data):
@@ -132,6 +132,6 @@ class RecipeSerializer(ModelSerializer):
         instance.tags.clear()
         instance.ingredients.clear()
         instance.tags.set(self.initial_data.get('tags'))
-        self.__create_ingredients(ingredients, instance)
+        self.create_ingredients(ingredients, instance)
         instance.save()
         return instance

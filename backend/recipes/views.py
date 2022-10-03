@@ -19,7 +19,7 @@ class TagsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = serializers.TagSerializer
     permission_classes = (IsAdminOrReadOnly,)
-    pagination_class = CustomPagination
+    pagination_class = None
 
 
 class IngredientsViewSet(viewsets.ReadOnlyModelViewSet):
@@ -29,7 +29,7 @@ class IngredientsViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (IngredientSearchFilter,)
     permission_classes = (IsAdminOrReadOnly,)
     search_fields = ('^name',)
-    pagination_class = CustomPagination
+    pagination_class = None
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
