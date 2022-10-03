@@ -39,3 +39,5 @@ class Command(BaseCommand):
             raise CommandError(f'{filename} является директорией!')
         except PermissionError:
             raise CommandError(f'Для открытия файла {filename} недостаточно прав!')
+        except Exception:
+            raise CommandError(f'Ошибка при открытии файла {filename}')
