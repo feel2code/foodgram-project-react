@@ -102,7 +102,8 @@ class RecipeSerializer(ModelSerializer):
         data['ingredients'] = ingredients
         return data
 
-    def create_ingredients(self, ingredients, recipe):
+    @staticmethod
+    def create_ingredients(ingredients, recipe):
         """Записывает количество ингредиентов в рецепте."""
         for ingredient in ingredients:
             AmountIngredient.objects.create(
