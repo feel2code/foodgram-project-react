@@ -1,4 +1,5 @@
 from django.contrib import admin
+from rest_framework.authtoken.admin import TokenAdmin
 from users.models import Follow, MyToken, User
 
 
@@ -23,3 +24,6 @@ class MyTokenAdmin(admin.ModelAdmin):
     list_display = ('key', 'user')
     search_fields = ('user',)
     list_filter = ('user', )
+
+
+admin.site.unregister(TokenAdmin)
