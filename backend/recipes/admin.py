@@ -1,5 +1,5 @@
 from django.contrib import admin
-from recipes.models import AmountIngredient, Favorites, Ingredient, Recipe, Tag
+from recipes.models import AmountIngredient, Favorites, Ingredient, Recipe, Tag, Cart
 
 
 @admin.register(Ingredient)
@@ -37,6 +37,14 @@ class RecipeAdmin(admin.ModelAdmin):
 @admin.register(Favorites)
 class FavoriteAdmin(admin.ModelAdmin):
     """Отображает подписки на авторов в панели администратора."""
+    list_display = ('user', 'recipe')
+    search_fields = ('user',)
+    list_filter = ('user',)
+
+
+@admin.register(Cart)
+class FavoriteAdmin(admin.ModelAdmin):
+    """Отображает корзину в панели администратора."""
     list_display = ('user', 'recipe')
     search_fields = ('user',)
     list_filter = ('user',)

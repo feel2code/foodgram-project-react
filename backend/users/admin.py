@@ -1,5 +1,5 @@
 from django.contrib import admin
-from users.models import Follow, User
+from users.models import Follow, User, MyToken
 
 
 @admin.register(User)
@@ -13,5 +13,13 @@ class UserAdmin(admin.ModelAdmin):
 class FollowAdmin(admin.ModelAdmin):
     """Отображает подписки на авторов в панели администратора."""
     list_display = ('user', 'author')
+    search_fields = ('user',)
+    list_filter = ('user', )
+
+
+@admin.register(MyToken)
+class MyTokenAdmin(admin.ModelAdmin):
+    """Отображение токена."""
+    list_display = ('key', 'user')
     search_fields = ('user',)
     list_filter = ('user', )

@@ -126,7 +126,7 @@ class Recipe(models.Model):
 
 class AmountIngredient(models.Model):
     """
-    Количество ингридиента в рецерте (гр, мл, шт и т.д.).
+    Количество ингредиента в рецепте (гр, мл, шт и т.д.).
     Связан с моделью Recipe через М2М - AmountIngredient.
     """
     ingredient = models.ForeignKey(
@@ -145,7 +145,7 @@ class AmountIngredient(models.Model):
     amount = models.IntegerField(
         'Количество',
         validators=[MinValueValidator(
-            1, 'Минимальное количество ингридеентов 1')],
+            1, 'Минимальное количество ингредиентов 1')],
         default=1,
     )
 

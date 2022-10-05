@@ -1,3 +1,4 @@
+from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -60,3 +61,10 @@ class Follow(models.Model):
                 name='unique_follow'
             ),
         )
+
+
+class MyToken(Token):
+    class Meta:
+        proxy = True
+        verbose_name = 'токен'
+        verbose_name_plural = 'токены'
