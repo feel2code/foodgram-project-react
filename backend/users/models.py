@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.models import TokenProxy
 
 
 class User(AbstractUser):
@@ -63,7 +63,7 @@ class Follow(models.Model):
         )
 
 
-class MyToken(Token):
+class MyToken(TokenProxy):
     class Meta:
         proxy = True
         verbose_name = 'токен'
