@@ -1,5 +1,6 @@
 from django.contrib import admin
-from recipes.models import AmountIngredient, Favorites, Ingredient, Recipe, Tag, Cart
+from recipes.models import (AmountIngredient, Favorites,
+                            Ingredient, Recipe, Tag, Cart)
 
 
 @admin.register(Ingredient)
@@ -43,7 +44,7 @@ class FavoriteAdmin(admin.ModelAdmin):
 
 
 @admin.register(Cart)
-class FavoriteAdmin(admin.ModelAdmin):
+class CartAdmin(admin.ModelAdmin):
     """Отображает корзину в панели администратора."""
     list_display = ('user', 'recipe')
     search_fields = ('user',)
