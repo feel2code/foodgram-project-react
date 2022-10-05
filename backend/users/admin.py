@@ -1,5 +1,5 @@
 from django.contrib import admin
-from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.models import TokenProxy
 from users.models import Follow, MyToken, User
 
 
@@ -26,4 +26,4 @@ class MyTokenAdmin(admin.ModelAdmin):
     list_filter = ('user', )
 
 
-admin.site.unregister(Token)
+admin.site.unregister(TokenProxy)
