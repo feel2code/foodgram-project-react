@@ -97,7 +97,7 @@ class RecipeSerializer(ModelSerializer):
         for ingredient in ingredients:
             ingredient = get_object_or_404(Ingredient, id=ingredient['id'])
             if not Ingredient.objects.filter(name=ingredient).exists():
-                raise ValidationError('Несуществующий ингредиент.')
+                return None
             if ingredient in ingredients_set:
                 raise ValidationError('Ингридиенты повторяются')
             ingredients_set.add(ingredient)
