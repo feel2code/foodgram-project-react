@@ -46,6 +46,6 @@ class FavoriteAdmin(admin.ModelAdmin):
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
     """Отображает корзину в панели администратора."""
-    list_display = ('user', 'recipe')
+    list_display = ('recipe',)
     search_fields = ('user',)
     list_filter = ('user',)
