@@ -1,135 +1,108 @@
-<h1><a target="_blank" href="https://github.com/feel2code/foodgram-project-react/">Проект Foodgram Продуктовый помощник</a></h1>
+# [Foodgram Project - Food Assistant](https://github.com/feel2code/foodgram-project-react/)
 
-![Foodgram workflow](https://github.com/feel2code/foodgram-project-react/actions/workflows/main.yml/badge.svg)
+## Description
+"Foodgram" it's a study project from Yandex.Practicum training course - food assistant.
 
-#### Проект запущен по адресу http://foodgramhelper.ddns.net/
+The service is designed for publishing recipes, adding favorite recipes to the favorites list, and subscribing to publications of other users. It also includes the functionality to download a list of ingredients needed to prepare dishes from selected recipes.
 
-## Описание
-Проект Foodgram «Продуктовый помощник».
-Сервис создан для публикации рецептов, добавления понравившихся рецептов в список «Избранное»,
-подписок на публикации других пользователей.
-Также доступен функционал загрузки списка продуктов, необходимых для приготовления блюд по выбранным рецептам.
+### GitHub Workflow secrets
 
-## GitHub Workflow secrets
-```Settings - Secrets - Actions secrets```
-```
-DOCKER_USERNAME = имя пользователя в DockerHub
-DOCKER_PASSWORD = пароль пользователя в DockerHub
-HOST = публичный ip-адрес сервера
-USER = пользователь для подключения к серверу
-SSH_KEY = приватный ssh-ключ
-```
+- *DOCKER_USERNAME*: DockerHub username
+- **DOCKER_PASSWORD*: DockerHub password
+- *HOST*: public IP address of the server
+- *USER*: username for connecting to the server
+- *SSH_KEY*: private SSH key
 
-## Переменные окружения
-``` infra/.env ```
-```
-DB_ENGINE=django.db.backends.postgresql  # движок БД
-DB_NAME=postgres  # имя БД
-POSTGRES_USER=postgres  # логин для подключения к БД
-POSTGRES_PASSWORD=postgres  # пароль для подключения к БД
-DB_HOST=db  # название контейнера
-DB_PORT=5432  # порт для подключения к БД
-ALLOWED_HOSTS=*, localhost # разрешенные хосты
-SECRET_KEY=key # секретный ключ приложения django
-```
+### Environment Variables
 
-## Запуск проекта
-#### Клонируем репозиторий, создаем и активируем виртуальное окружение (GNU/Linux или Mac):
+- *DB_ENGINE*: django.db.backends.postgresql  # database engine
+- *DB_NAME*: postgres  # database name
+- *POSTGRES_USER*: postgres  # login to connect to the database
+- *POSTGRES_PASSWORD*: postgres  # password to connect to the database
+- *DB_HOST*: db  # container name
+- *DB_PORT*: 5432  # port to connect to the database
+- *ALLOWED_HOSTS*: *, localhost # allowed hosts
+- *SECRET_KEY*: key # Django application secret key
+
+## Project Setup
 ```bash
+# Clone the repository and set up a virtual environment
 git clone https://github.com/feel2code/foodgram-project-react && cd foodgram-project-react && python3 -m venv venv && source venv/bin/activate
-```
-#### для Windows
-```bash
+# For Windows
 git clone https://github.com/feel2code/foodgram-project-react && cd foodgram-project-react && python3 -m venv venv && source venv/Scripts/activate
-```
 
-#### Обновляем pip и устанавливаем зависимости:
-```bash
+# Update pip and install dependencies
 python -m pip install --upgrade pip && pip install -r backend/requirements.txt
-```
 
-#### Переходим в директорию с файлом docker-compose.yaml:
-```bash
+# Navigate to the directory with the docker-compose.yaml file
 cd infra
-```
 
-#### Запуск docker-compose:
-```bash
+# Run docker-compose
 docker-compose up -d --build
-```
 
-#### После успешной сборки на сервере выполняем команды:
-```bash
+# After a successful build on the server, execute the following commands
 docker-compose exec backend python manage.py collectstatic --noinput
-```
 
-#### Применяем миграции:
-```bash
+# Apply migrations
 docker-compose exec backend python manage.py makemigrations
 docker-compose exec backend python manage.py migrate --noinput
-```
 
-#### Команда для заполнения базы тестовыми данными:
-```bash
+# Command to populate the database with test data
 docker-compose exec backend python manage.py loaddata db.json
-```
 
-#### Загружаем данные в базу данных:
-```bash
+# Load data into the database
 docker-compose exec backend python manage.py load_ingredients ingredients.json && docker-compose exec backend python manage.py load_ingredients tags.json
-```
 
-#### Создаем суперпользователя Django:
-```bash
+# Create a Django superuser
 docker-compose exec backend python manage.py createsuperuser
 ```
 
-### Ссылки на проект:
-Проект после запуска будет доступен по адресу - http://localhost/
+## Project Links:
+After launch, the project will be available at - http://localhost/
 
-Админ панель будет доступна по адресу - http://localhost/admin/
+The admin panel will be accessible at - http://localhost/admin/
 
-Документация API по адресу - http://localhost/api/docs/
+API documentation can be found at - http://localhost/api/docs/
 
-#### Останавливаем контейнеры:
+### Stopping Containers:
 ```bash
 docker-compose down -v
 ```
 
-## Запуск проекта на сервере
-#### Подключение по SSH
+## Running the Project on the Server
+### Connecting via SSH
+
 ```bash
-ssh <username>@<ip-adress>
+ssh <username>@<ip-address>
 ```
 
-#### Обновляем пакеты:
+### Updating Packages:
+
 ```bash
-sudo apt update -y && sudo apt upgrade -yy 
+sudo apt update -y && sudo apt upgrade -yy
 ```
 
-#### Устанавливаем docker и docker-compose:
+### Installing Docker and Docker Compose:
+
 ```bash
-sudo apt install docker docker-compose 
+sudo apt install docker docker-compose
 ```
 
-#### Устанавливаем Postgres DB:
+### Installing Postgres DB:
+
 ```bash
 sudo apt install postgresql postgresql-contrib
 ```
 
-Подготовьте файл ```nginx.conf``` вписав в строке ```server_name``` публичный ip сервера.
-Затем скопируйте директорию рекурсивно на сервер с помощью scp.
+Prepare the nginx.conf file by entering the public server IP in the server_name line. Then copy the directory recursively to the server using scp.
+
 ```bash
 scp -r infra <username>@<host>:/infra
 ```
 
-Запуск проекта осуществляется аналогично процессу на локальной машине,
-за исключением того, что все команды должны вводится через ```sudo```
+Running the project is similar to the process on the local machine, except that all commands should be entered with sudo.
 
-## Использованные технологии:
-```bash, python 3.7, django 2.2, django REST Framework, postgreSQL 13.0, docker,
-Docker Hub, Nginx, Gunicorn 20.0.4, GitHub Actions, Yandex.Cloud.
-```
 
-## Автор проекта
-[feel2code](https://t.me/feel2code)
+## Technologies Used:
+
+*bash, Docker Hub, Nginx, Gunicorn 20.0.4, GitHub Actions, Yandex.Cloud.*
